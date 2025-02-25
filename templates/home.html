@@ -1,0 +1,168 @@
+<html>
+<head>
+    <style>
+        body {
+            background-color: #e6f7ff; /* Light pastel blue background */
+            font-family: Arial, sans-serif;
+        }
+
+        .login {
+            text-align: center;
+            padding: 20px;
+        }
+
+        .form-container {
+            display: flex;
+            justify-content: center;
+        }
+
+        .form-horizontal {
+            display: grid;
+            grid-template-columns: 1fr 1fr; /* Two-column layout */
+            gap: 20px;
+            justify-content: center;
+            padding: 20px;
+            background: #ffffff; /* White background */
+            border-radius: 10px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            max-width: 600px;
+            margin: auto;
+        }
+
+        .form-group {
+            width: 100%;
+        }
+
+        .form-label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #004080; /* Dark blue for contrast */
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-title {
+            text-align: center;
+            color: #00264d; /* Deep blue */
+            font-size: 20px;
+            margin-bottom: 15px;
+            grid-column: span 2; /* Make the title span both columns */
+        }
+
+        .btn-primary {
+            background-color: #004080; /* Dark blue */
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+            grid-column: span 2; /* Center the button across two columns */
+        }
+
+        .btn-primary:hover {
+            background-color: #00264d; /* Darker blue on hover */
+        }
+
+        h1, h2 {
+            color: #00264d;
+        }
+    </style>
+</head>
+<body>
+    <div class="login">
+       <h1>Student Exam Performance Prediction</h1>
+
+       <div class="form-container">
+           <form class="form-horizontal" action="{{ url_for('predict_datapoint')}}" method="post">
+                
+
+                <div class="form-group">
+                    <label class="form-label">Gender</label>
+                    <select class="form-control" name="gender" required>
+                        <option selected disabled value="">Select your Gender</option>
+                        <option value="male">Male</option>
+                        <option value="female">Female</option>
+                    </select>
+                </div>
+
+                <!-- Right Column -->
+                <div class="form-group">
+                    <label class="form-label">Race or Ethnicity</label>
+                    <select class="form-control" name="ethnicity" required>
+                        <option selected disabled value="">Select Ethnicity</option>
+                        <option value="group A">Group A</option>
+                        <option value="group B">Group B</option>
+                        <option value="group C">Group C</option>
+                        <option value="group D">Group D</option>
+                        <option value="group E">Group E</option>
+                    </select>
+                </div>
+
+                <!-- Right Column -->
+                <div class="form-group">
+                    <label class="form-label">Parental Level of Education</label>
+                    <select class="form-control" name="parental_level_of_education" required>
+                        <option selected disabled value="">Select Parent Education</option>
+                        <option value="associate's degree">Associate's Degree</option>
+                        <option value="bachelor's degree">Bachelor's Degree</option>
+                        <option value="high school">High School</option>
+                        <option value="master's degree">Master's Degree</option>
+                        <option value="some college">Some College</option>
+                        <option value="some high school">Some High School</option>
+                    </select>
+                </div>
+
+                <!-- Right Column -->
+                <div class="form-group">
+                    <label class="form-label">Lunch Type</label>
+                    <select class="form-control" name="lunch" required>
+                        <option selected disabled value="">Select Lunch Type</option>
+                        <option value="free/reduced">Free/Reduced</option>
+                        <option value="standard">Standard</option>
+                    </select>
+                </div>
+
+                
+                <!-- Left Column -->
+                <div class="form-group">
+                    <label class="form-label">Test Preparation Course</label>
+                    <select class="form-control" name="test_preparation_course" required>
+                        <option selected disabled value="">Select Test Course</option>
+                        <option value="none">None</option>
+                        <option value="completed">Completed</option>
+                    </select>
+                </div>
+
+                 <!-- Left Column -->
+                 <div class="form-group">
+                    <label class="form-label">Reading Score (out of 100)</label>
+                    <input class="form-control" type="number" name="reading_score" placeholder="Enter Reading Score" min="0" max="100" required />
+                </div>
+
+                
+
+                <!-- Left Column -->
+                <div class="form-group">
+                    <label class="form-label">Writing Score (out of 100)</label>
+                    <input class="form-control" type="number" name="writing_score" placeholder="Enter Writing Score" min="0" max="100" required />
+                </div>
+
+                <!-- Submit Button -->
+                <div class="form-group">
+                    <br>
+                    <input class="btn btn-primary" type="submit" value="Predict Your Math Score" />
+                </div>
+            </form>
+       </div>
+    
+    <h2>Prediction: {{ results }}</h2>
+    </div>
+</body>
+</html>
